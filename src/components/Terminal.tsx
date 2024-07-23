@@ -14,8 +14,9 @@ export default function Terminal() {
             height="80vh"
             borderRadius="0px 0px 15px 15px"
             padding="1%"
+            flexDirection="column"
         >
-        {/* ASCII */}
+            {/* ASCII */}
             <TerminalAscii />
         </Flex>
     );
