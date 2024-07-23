@@ -4,7 +4,7 @@ import {
   Flex,
 } from '@chakra-ui/react'
 import theme from './styles/theme';
-import Terminal from './components/Terminal';
+import TerminalContainer from './components/TerminalContainer';
 
 export default function App() {
     return (
@@ -15,7 +15,7 @@ export default function App() {
                 justifyContent="center"
                 alignItems="center"
             >
-                <Terminal />
+                <TerminalContainer />
             </Flex>
         </ChakraProvider>
     );
