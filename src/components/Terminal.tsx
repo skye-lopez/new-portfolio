@@ -188,9 +188,22 @@ export default function Terminal() {
                 (<Flex
                     flexDirection="column"
                  >
+                    {/* Download Link */}
+                    <Flex
+                        as="u"
+                    >
+                        <Link
+                            color="orange"
+                            as="b"
+                            onClick={() => openLink("https://docs.google.com/document/d/1PnnBEnK2FfEIlpB4hfuFvJxvzzv6Qlz6tV6k5Dt_gsg/edit?usp=sharing")}
+                        >
+                            Full resume with details (click me)
+                        </Link>
+                    </Flex>
                     {/* TECH ICONS */}
                     <Flex
                         flexDirection="column"
+                        marginTop="10px"
                     >
                         <Text
                             as="b"
@@ -215,6 +228,37 @@ export default function Terminal() {
                             <IconWithTip icon="aws" />
                             <IconWithTip icon="gitlab CI/CD" />
                         </Flex>
+                    </Flex>
+                    {/* Experience Overview */}
+                    <Flex
+                        flexDirection="column"
+                        marginTop="10px"
+                    >
+                        <Text
+                            as="b"
+                            marginBottom="10px"
+                        >
+                            Positions:
+                        </Text>
+
+                        <Text>
+                            Pando - FullStack Engineer (Backend)
+                        </Text>
+
+                        <Text>
+                            Galvanize - Software Engineering Mentor
+                        </Text>
+
+                        <Text
+                            as="b"
+                            margin="10px 0px"
+                        >
+                            Education:
+                        </Text>
+
+                        <Text>
+                            Hack Reactor (Bootcamp)
+                        </Text>
                     </Flex>
                 </Flex>)
                 : null
