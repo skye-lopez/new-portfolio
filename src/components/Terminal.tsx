@@ -11,7 +11,7 @@ import {
     useEffect, 
     useRef 
 } from "react";
-import TerminalAscii from "./TerminalAscii";
+import TerminalAscii, { Character } from "./TerminalAscii";
 import UseKeyPress from "./UseKeyPress";
 
 
@@ -29,23 +29,35 @@ export default function Terminal() {
     const [userInput, setUserInput] = useState<string>("");
     const inputRef = useRef<HTMLInputElement>(null);
 
+    function handleGithubAction() {
+    }
+
+    function handleResumeAction() {
+    }
+
+    function handleProjectsAction() {
+    }
+
+    function handleCalendarAction() {
+    }
+
     const { text, action, setAction }= UseKeyPress();
     useEffect(() => {
         if (action) {
             const actions: any = {
-                "github": true,
-                "resume": true,
-                "projects": true,
-                "calendar": true,
+                "github": handleGithubAction,
+                "resume": handleResumeAction,
+                "projects": handleProjectsAction,
+                "calendar": handleCalendarAction,
             };
             if (actions[text]) {
-                // TODO: Invoke functions
+                actions[text]();
                 return setAction(() => false);
             }
             // Do some "magic"; try to find an action.
             for (const key in actions) {
                 if (text.includes(key)) {
-                    // TODO: Invoke functions
+                    actions[key]();
                     return setAction(() => false);
                 }
             }

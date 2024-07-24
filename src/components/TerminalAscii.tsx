@@ -71,7 +71,7 @@ export default function TerminalAscii() {
                         speed={90}
                         sequence={[
                             1000,
-                            `925-997-0953 | aria.lopez.dev@gmail.com | SF Bay Area \n Welcome to my portfolio! Type a command from the list below: \n >> resume (get my current resume) \n >> github (open my github) \n >> projects (see a list of my latest projects) \n >> calendar (set a meeting with me)`,
+                            `Welcome to my portfolio! Type a command from the list below: \n >> resume (get my current resume) \n >> github (open my github) \n >> projects (see a list of my latest projects) \n >> calendar (set a meeting with me) \n >> email (send me an email)`,
                         ]}
                         wrapper="p"
                     />
@@ -82,7 +82,7 @@ export default function TerminalAscii() {
                 >
                     <Character 
                         color="red"
-                        character={"---------------------"}
+                        character={"------------"}
                     />
                 </Flex>
         </Flex>
@@ -94,7 +94,7 @@ interface CharacterProps {
     character: string
 }
 
-function Character({ color, character }: CharacterProps) {
+export function Character({ color, character }: CharacterProps) {
     return (
         <Text
             as="b"
