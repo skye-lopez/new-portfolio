@@ -11,12 +11,13 @@ import { TypeAnimation } from 'react-type-animation';
 
 // TODO: Decide colors
 export default function TerminalAscii() {
+    const [outPut, setOutput] = useState<string>("");
     return (
         <Flex
             flexDirection="column"
         >
             <Flex
-                maxHeight="100px"
+                maxHeight="200px"
                 wrap="wrap"
             >
                 <Flex>
@@ -62,14 +63,26 @@ export default function TerminalAscii() {
                 </Flex>
             </Flex>
                 <Flex
+                    maxHeight="300px"
                 >
                     <TypeAnimation
+                        cursor={false}
+                        style={{ whiteSpace: 'pre-line' }}
+                        speed={90}
                         sequence={[
                             1000,
-                            'Welcome to my portfolio...',
+                            `925-997-0953 | aria.lopez.dev@gmail.com | SF Bay Area \n Welcome to my portfolio! Type a command from the list below. \n >> resume (get my current resume) \n >> github (open my github) \n >> projects (see a list of my latest projects).`,
                         ]}
-                        wrapper="span"
-                        cursor={true}
+                        wrapper="p"
+                    />
+                </Flex>
+                <Flex
+                    height="100px"
+                    direction="column"
+                >
+                    <Character 
+                        color="red"
+                        character={"---------------------"}
                     />
                 </Flex>
         </Flex>
