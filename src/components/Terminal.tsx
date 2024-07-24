@@ -29,21 +29,7 @@ export default function Terminal() {
     const [userInput, setUserInput] = useState<string>("");
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const keys = UseKeyPress();
-
-    function focusInput() {
-        if (inputRef?.current) {
-            inputRef.current.focus();
-        }
-    }
-
-    useEffect(() => {
-        focusInput();
-    }, [])
-
-    function handleInput(e: any) {
-        setUserInput(() => e.target.value)
-    }
+    const { text, action, setAction }= UseKeyPress();
 
     return (
         <Flex
@@ -61,7 +47,6 @@ export default function Terminal() {
                 alignItems="center"
                 justifyContent="start"
                 cursor="pointer"
-                onClick={() => focusInput()}
             >
                 <Text
                     as="b"
@@ -69,8 +54,10 @@ export default function Terminal() {
                 >
                     {"user@you~>"}
                 </Text>
-                <Text>
-                    {keys}
+                <Text
+                    color={text?.length > 0 ? "inherit" : "gray"}
+                >
+                    {text?.length > 0 ? text : "Begin typing..."}
                 </Text>
                 <Flex 
                     animation={cursorAnimation} 
