@@ -30,6 +30,29 @@ export default function Terminal() {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const { text, action, setAction }= UseKeyPress();
+    useEffect(() => {
+        if (action) {
+            const actions: any = {
+                "github": true,
+                "resume": true,
+                "projects": true,
+                "calendar": true,
+            };
+            if (actions[text]) {
+                // TODO: Invoke functions
+                return setAction(() => false);
+            }
+            // Do some "magic"; try to find an action.
+            for (const key in actions) {
+                if (text.includes(key)) {
+                    // TODO: Invoke functions
+                    return setAction(() => false);
+                }
+            }
+            // Not a valid command event
+            setAction(() => false);
+        }
+    }, [action]);
 
     return (
         <Flex
