@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
     Flex,
     useColorModeValue,
@@ -7,6 +8,7 @@ import {
     Stack,
     Link,
     Icon,
+    Image,
 } from "@chakra-ui/react";
 import {
     PhoneIcon,
@@ -40,8 +42,8 @@ export default function Terminal() {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [terminalOutput, setTerminalOutput] = useState<string[]>([]);
-    // TODO : whenever we update this we have to set it to nothing and then set it again.
     const [terminalState, setTerminalState] = useState<string>("");
+    const [foxImg, setFoxImg] = useState("");
 
     function openLink(url: string) {
         window.open(url, "_blank");
@@ -85,8 +87,25 @@ export default function Terminal() {
         }, 100)
     }
 
+    async function getFoxImg() {
+        const { image } = (await axios.get("https://randomfox.ca/floof/")).data;
+        setFoxImg(image);
+    }
+
+    async function handleFoxAction() {
+        console.log("hey")
+        await getFoxImg();
+        setTimeout(() => {
+            setTerminalOutput(() => ["FOX"]);
+            setTerminalState("fox");
+        }, 100);
+    }
+
     const { text, action, setAction }= UseKeyPress();
     useEffect(() => {
+        if (foxImg.length === 0) {
+            getFoxImg();
+        }
         if (action) {
             setTerminalOutput(() => []);
             setTerminalState(() => "");
@@ -95,6 +114,7 @@ export default function Terminal() {
                 "resume": handleResumeAction,
                 "projects": handleProjectsAction,
                 "contact": handleContactAction,
+                "fox": handleFoxAction,
             };
             if (actions[text]) {
                 actions[text]();
@@ -260,6 +280,13 @@ export default function Terminal() {
                             Hack Reactor (Bootcamp)
                         </Text>
                     </Flex>
+                </Flex>)
+                : terminalState === "fox" ?
+                (<Flex>
+                    <Image 
+                        src={foxImg} 
+                        width="500px"
+                    />
                 </Flex>)
                 : null
             }

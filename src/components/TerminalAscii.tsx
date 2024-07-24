@@ -40,7 +40,7 @@ export default function TerminalAscii() {
                     speed={90}
                     sequence={[
                         1000,
-                        `Welcome to my portfolio! Type a command from the list below: \n >> resume (get my current resume) \n >> github (open my github) \n >> projects (see a list of my latest projects) \n >> contact (get in touch) \n >> animal (get a cute animal picture)`,
+                        `Welcome to my portfolio! Type a command from the list below: \n >> resume (get my current resume) \n >> github (open my github) \n >> projects (see a list of my latest projects) \n >> contact (get in touch) \n >> fox (no cats here, just fox pics.)`,
                     ]}
                     wrapper="p"
                 />
