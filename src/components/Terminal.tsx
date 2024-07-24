@@ -38,7 +38,6 @@ export default function Terminal() {
         }
     `;
     const cursorAnimation = `${cursor} 1s infinite`;
-    const [userInput, setUserInput] = useState<string>("");
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [terminalOutput, setTerminalOutput] = useState<string[]>([]);
@@ -101,7 +100,7 @@ export default function Terminal() {
         }, 100);
     }
 
-    const { text, action, setAction }= UseKeyPress();
+    const { text, action, setAction, resetText } = UseKeyPress();
     useEffect(() => {
         if (foxImg.length === 0) {
             getFoxImg();
@@ -109,6 +108,7 @@ export default function Terminal() {
         if (action) {
             setTerminalOutput(() => []);
             setTerminalState(() => "");
+            resetText();
             const actions: any = {
                 "github": handleGithubAction,
                 "resume": handleResumeAction,

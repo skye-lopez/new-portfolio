@@ -13,6 +13,7 @@ export default function TerminalContainer() {
             flexDirection="column"
             borderRadius="10px"
             width="90%"
+            maxWidth="1000px"
         >
 {/* Header Bar */}
             <Flex

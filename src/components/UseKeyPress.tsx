@@ -6,11 +6,16 @@ interface UseKeyPressReturn {
     text: string
     action: boolean
     setAction: Function
+    resetText: Function
 }
 
 export default function UseKeyPress(): UseKeyPressReturn {
     const [userState, setUserState] = useState<string>("");
     const [action, setAction] = useState<boolean>(false);
+
+    function resetText() {
+        setUserState("");
+    }
 
     function handleKeyDown(e: any) {
         // Delete
@@ -44,10 +49,10 @@ export default function UseKeyPress(): UseKeyPressReturn {
         }
     });
 
-    const r: UseKeyPressReturn = {
+    return {
         text: userState,
         action,
         setAction,
+        resetText
     };
-    return r;
 }
