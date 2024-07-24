@@ -11,7 +11,7 @@ import {
     useEffect, 
     useRef 
 } from "react";
-import TerminalAscii, { Character } from "./TerminalAscii";
+import TerminalAscii, { Ascii, } from "./TerminalAscii";
 import UseKeyPress from "./UseKeyPress";
 
 
@@ -29,7 +29,13 @@ export default function Terminal() {
     const [userInput, setUserInput] = useState<string>("");
     const inputRef = useRef<HTMLInputElement>(null);
 
+    const [terminalOutput, setTerminalOutput] = useState<string>("");
+    // TODO : whenever we update this we have to set it to nothing and then set it again.
+
+
     function handleGithubAction() {
+        setTerminalOutput(() => "GITHUB.COM/SKYE-LOPEZ");
+        console.log("THIS WAS CALLED");
     }
 
     function handleResumeAction() {
@@ -76,6 +82,13 @@ export default function Terminal() {
         >
             {/* ASCII */}
             <TerminalAscii />
+            { terminalOutput?.length > 0 ? 
+                (<Ascii 
+                    text={terminalOutput}
+                    size="7px"
+                />) :
+                null
+            }
             {/* "Command Line" */}
             <Flex
                 direction="row"

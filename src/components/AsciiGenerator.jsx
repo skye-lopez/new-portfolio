@@ -1,9 +1,10 @@
-import { useAsciiText, slant } from 'react-ascii-text';
+import { useAsciiText, slant, smallSlant } from 'react-ascii-text';
 import { Flex } from '@chakra-ui/react';
 
 export default function Ascii(props) {
+    const fonts = { "smallSlant": smallSlant, "slant": slant };
     const text = useAsciiText({
-        font: slant,
+        font: fonts[props?.font],
         fadeInOnly: true,
         animationLoop: false,
         animationDirection: "down",

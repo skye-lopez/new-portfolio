@@ -1,107 +1,77 @@
 import {
     Flex,
     Text,
-} from '@chakra-ui/react';
-import {
-    useState,
-    useEffect,
-} from 'react';
-import AsciiGenerator from './AsciiGenerator';
-import { TypeAnimation } from 'react-type-animation';
+} from "@chakra-ui/react";
 
-// TODO: Decide colors
+import { _Ascii, _SmallAscii } from "./Ascii.jsx";
+import { TypeAnimation } from "react-type-animation";
+
 export default function TerminalAscii() {
-    const [outPut, setOutput] = useState<string>("");
     return (
-        <Flex
+        <Flex 
             flexDirection="column"
         >
+        {/* ASCII TITLE */}
             <Flex
                 maxHeight="200px"
                 wrap="wrap"
             >
                 <Flex>
-                    <Character 
-                        color="blue"
-                        character="A"
-                    />
-                    <Character 
-                        color="blue"
-                        character="R"
-                    />
-                    <Character 
-                        color="blue"
-                        character="I"
-                    />
-                    <Character 
-                        color="blue"
-                        character="A"
+                    <Ascii 
+                        text="ARIA" 
+                        size="10px"
                     />
                 </Flex>
 
                 <Flex>
-                    <Character 
-                        color="orange"
-                        character="L"
-                    />
-                    <Character 
-                        color="orange"
-                        character="O"
-                    />
-                    <Character 
-                        color="orange"
-                        character="P"
-                    />
-                    <Character 
-                        color="orange"
-                        character="E"
-                    />
-                    <Character 
-                        color="orange"
-                        character="Z"
+                    <Ascii 
+                        text="LOPEZ"
+                        size="10px"
                     />
                 </Flex>
             </Flex>
-                <Flex
-                    maxHeight="300px"
-                >
-                    <TypeAnimation
-                        cursor={false}
-                        style={{ whiteSpace: 'pre-line' }}
-                        speed={90}
-                        sequence={[
-                            1000,
-                            `Welcome to my portfolio! Type a command from the list below: \n >> resume (get my current resume) \n >> github (open my github) \n >> projects (see a list of my latest projects) \n >> calendar (set a meeting with me) \n >> email (send me an email)`,
-                        ]}
-                        wrapper="p"
-                    />
-                </Flex>
-                <Flex
-                    height="100px"
-                    direction="column"
-                >
-                    <Character 
-                        color="red"
-                        character={"------------"}
-                    />
-                </Flex>
+            {/* TYPE INTRO */}
+            <Flex
+                maxHeight="300px"
+            >
+                <TypeAnimation
+                    cursor={false}
+                    style={{ whiteSpace: 'pre-line' }}
+                    speed={90}
+                    sequence={[
+                        1000,
+                        `Welcome to my portfolio! Type a command from the list below: \n >> resume (get my current resume) \n >> github (open my github) \n >> projects (see a list of my latest projects) \n >> calendar (set a meeting with me) \n >> email (send me an email)`,
+                    ]}
+                    wrapper="p"
+                />
+            </Flex>
+
+            {/* Output Seperator */}
+            <Flex
+                height="70px"
+            >
+                <Ascii 
+                    text="------------"
+                    size="7px"
+                />
+            </Flex>
         </Flex>
     );
 }
 
-interface CharacterProps {
-    color: string
-    character: string
+interface AsciiProps {
+    text: string 
+    size: string
 }
 
-export function Character({ color, character }: CharacterProps) {
+export function Ascii({ text, size }: AsciiProps) {
     return (
         <Text
-            as="b"
-            fontSize="10px"
-            color={color}
+            fontSize={size}
         >
-            <AsciiGenerator text={character} />
+            <_Ascii 
+                text={text}
+            />
         </Text>
     );
 }
