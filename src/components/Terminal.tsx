@@ -5,6 +5,7 @@ import {
     Input,
     keyframes,
     Stack,
+    Link,
 } from "@chakra-ui/react";
 import { 
     useState, 
@@ -29,32 +30,66 @@ export default function Terminal() {
     const [userInput, setUserInput] = useState<string>("");
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const [terminalOutput, setTerminalOutput] = useState<string>("");
+    const [terminalOutput, setTerminalOutput] = useState<string[]>([]);
     // TODO : whenever we update this we have to set it to nothing and then set it again.
+    const [terminalState, setTerminalState] = useState<string>("");
 
+    function openLink(url: string) {
+        window.open(url, "_blank");
+    }
 
+    // TODO: setTimout gaurentees a proper re-render of the Ascii
+    // but this should really be less hacky...
     function handleGithubAction() {
-        setTerminalOutput(() => "GITHUB.COM/SKYE-LOPEZ");
-        console.log("THIS WAS CALLED");
+        setTimeout(() => {
+            setTerminalOutput(() => ["GITHUB.COM/", "SKYE-LOPEZ"]);
+            setTerminalState(() => "github");
+            openLink("https://www.github.com/skye-lopez");
+        }, 100);
     }
 
     function handleResumeAction() {
+        setTimeout(() => {
+            setTerminalOutput(() => ["RESUME"]);
+        }, 100);
     }
 
     function handleProjectsAction() {
+        setTimeout(() => {
+            setTerminalOutput(() => ["PROJECTS"]);
+        }, 100);
     }
 
     function handleCalendarAction() {
+        setTimeout(() => {
+            setTerminalOutput(() => ["CALENDAR"]);
+        }, 100);
+    }
+
+    function handleEmailAction() {
+        setTimeout(() => {
+            setTerminalOutput(() => ["EMAIL"]);
+        }, 100);
+    }
+
+    function handleError() {
+        setTimeout(() => {
+            setTerminalOutput(() => ["ERROR"]);
+            setTerminalState("error");
+        }, 100)
     }
 
     const { text, action, setAction }= UseKeyPress();
     useEffect(() => {
         if (action) {
+            setTerminalOutput(() => []);
+            setTerminalState(() => "");
             const actions: any = {
                 "github": handleGithubAction,
                 "resume": handleResumeAction,
                 "projects": handleProjectsAction,
                 "calendar": handleCalendarAction,
+                "email": handleEmailAction,
             };
             if (actions[text]) {
                 actions[text]();
@@ -68,6 +103,7 @@ export default function Terminal() {
                 }
             }
             // Not a valid command event
+            handleError();
             setAction(() => false);
         }
     }, [action]);
@@ -75,20 +111,47 @@ export default function Terminal() {
     return (
         <Flex
             background={_terminalBackgroundColor}
-            height="80vh"
             borderRadius="0px 0px 15px 15px"
-            padding="1%"
+            padding="2%"
+            height="auto"
             flexDirection="column"
         >
             {/* ASCII */}
             <TerminalAscii />
-            { terminalOutput?.length > 0 ? 
-                (<Ascii 
-                    text={terminalOutput}
-                    size="7px"
-                />) :
-                null
+            {/* Terminal Output from commands */}
+            {/* ASCII OUTPUT */}
+            <Flex
+                wrap="wrap"
+                flexDirection="row"
+            >
+                { terminalOutput?.length > 0 ? 
+                    terminalOutput?.map((w) => (<Ascii 
+                        text={w}
+                        size="7px"
+                    />))
+                    : null
+                }
+            </Flex>
+            {/* COMPONENT OUTPUT */}
+            {
+                terminalState === "github" ?
+                (<Flex as="u">
+                    <Link 
+                        as="b" 
+                        cursor="pointer"
+                        color="orange"
+                        onClick={() => openLink("https://www.github.com/skye-lopez")}
+                    >
+                        github.com/skye-lopez (click me)
+                    </Link>
+                </Flex>)
+                : terminalState === "error" ?
+                (<Text>
+                    Not a valid command - see commands above.
+                </Text>)
+                : null
             }
+
             {/* "Command Line" */}
             <Flex
                 direction="row"
