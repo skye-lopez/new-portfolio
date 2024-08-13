@@ -187,6 +187,7 @@ export default function Terminal() {
                                 >
                                     <Link
                                         as="b"
+                                        onClick={() => openLink("https://www.tftstats.xyz")}
                                     >
                                         tftstats.xyz - Data analysis + simple UI on the Riot Games TFT Api
                                     </Link>
