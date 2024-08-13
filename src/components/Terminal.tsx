@@ -40,6 +40,8 @@ export default function Terminal() {
     const cursorAnimation = `${cursor} 1s infinite`;
     const inputRef = useRef<HTMLInputElement>(null);
 
+    const highlightColor = useColorModeValue("orange.100", "blue")
+
     const [terminalOutput, setTerminalOutput] = useState<string[]>([]);
     const [terminalState, setTerminalState] = useState<string>("");
     const [foxImg, setFoxImg] = useState("");
@@ -188,8 +190,9 @@ export default function Terminal() {
                                     <Link
                                         as="b"
                                         onClick={() => openLink("https://www.tftstats.xyz")}
+                                        background={highlightColor}
                                     >
-                                        tftstats.xyz - Data analysis + simple UI on the Riot Games TFT Api
+                                        ~&#62; tftstats.xyz - Data analysis + simple UI on the Riot Games TFT Api
                                     </Link>
                                 </Flex>
                             </Flex>)
