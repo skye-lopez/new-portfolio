@@ -17,10 +17,10 @@ import {
 import {
     FaDiscord,
 } from "react-icons/fa";
-import { 
-    useState, 
-    useEffect, 
-    useRef 
+import {
+    useState,
+    useEffect,
+    useRef
 } from "react";
 import TerminalAscii, { Ascii, } from "./TerminalAscii";
 import UseKeyPress from "./UseKeyPress";
@@ -149,8 +149,8 @@ export default function Terminal() {
                 wrap="wrap"
                 flexDirection="row"
             >
-                { terminalOutput?.length > 0 ? 
-                    terminalOutput?.map((w) => (<Ascii 
+                {terminalOutput?.length > 0 ?
+                    terminalOutput?.map((w) => (<Ascii
                         text={w}
                         size="7px"
                     />))
@@ -160,135 +160,149 @@ export default function Terminal() {
             {/* COMPONENT OUTPUT */}
             {
                 terminalState === "github" ?
-                (<Flex as="u">
-                    <Link 
-                        as="b" 
-                        cursor="pointer"
-                        color="orange"
-                        onClick={() => openLink("https://www.github.com/skye-lopez")}
-                    >
-                        github.com/skye-lopez (click me)
-                    </Link>
-                </Flex>)
-                : terminalState === "error" ?
-                (<Text>
-                    Not a valid command - see commands above.
-                </Text>)
-                : terminalState === "projects" ?
-                (<Text>
-                    TODO: This section is a work in progress!, Checkout my github for now. 
-                </Text>)
-                : terminalState === "contact" ?
-                (<Flex
-                    flexDirection="column"
-                 >
-                    {/* PHONE */}
-                    <Flex
-                        alignItems="center"
-                    >
-                        <PhoneIcon marginRight="5px" />
-                        <Text>925-997-0953</Text>
-                    </Flex>
-                    {/* EMAIL */}
-                    <Flex
-                        alignItems="center"
-                    >
-                        <EmailIcon marginRight="5px" />
-                        <Text>aria.lopez.dev@gmail.com</Text>
-                    </Flex>
-                    {/* DISCORD */}
-                    <Flex
-                        alignItems="center"
-                    >
-                        <Icon as={FaDiscord} marginRight="5px" />
-                        <Text>aria._._.</Text>
-                    </Flex>
-                </Flex>)
-                : terminalState === "resume" ?
-                (<Flex
-                    flexDirection="column"
-                 >
-                    {/* Download Link */}
-                    <Flex
-                        as="u"
-                    >
+                    (<Flex as="u">
                         <Link
+                            as="b"
+                            cursor="pointer"
                             color="orange"
-                            as="b"
-                            onClick={() => openLink("https://docs.google.com/document/d/1PnnBEnK2FfEIlpB4hfuFvJxvzzv6Qlz6tV6k5Dt_gsg/edit?usp=sharing")}
+                            onClick={() => openLink("https://www.github.com/skye-lopez")}
                         >
-                            Full resume with details (click me)
+                            github.com/skye-lopez (click me)
                         </Link>
-                    </Flex>
-                    {/* TECH ICONS */}
-                    <Flex
-                        flexDirection="column"
-                        marginTop="10px"
-                    >
-                        <Text
-                            as="b"
-                        >
-                            Technologies:
-                        </Text>
-                        <Flex
-                            flexDirection="row"
-                            wrap="wrap"
-                        >
-                            <IconWithTip icon="vim" />
-                            <IconWithTip icon="postgresql" />
-                            <IconWithTip icon="javascript" />
-                            <IconWithTip icon="typescript" />
-                            <IconWithTip icon="node" />
-                            <IconWithTip icon="react" />
-                            <IconWithTip icon="vue" />
-                            <IconWithTip icon="python" />
-                            <IconWithTip icon="go" />
-                            <IconWithTip icon="git" />
-                            <IconWithTip icon="docker" />
-                            <IconWithTip icon="aws" />
-                            <IconWithTip icon="gitlab CI/CD" />
-                        </Flex>
-                    </Flex>
-                    {/* Experience Overview */}
-                    <Flex
-                        flexDirection="column"
-                        marginTop="10px"
-                    >
-                        <Text
-                            as="b"
-                            marginBottom="10px"
-                        >
-                            Positions:
-                        </Text>
+                    </Flex>)
+                    : terminalState === "error" ?
+                        (<Text>
+                            Not a valid command - see commands above.
+                        </Text>)
+                        : terminalState === "projects" ?
+                            (<Flex
+                                direction="column"
+                            >
+                                <Text>
+                                    // NOTE: This section is a work in progess.
+                                </Text>
 
-                        <Text>
-                            Pando - FullStack Engineer (Backend)
-                        </Text>
+                                <Flex
+                                    marginTop="10px"
+                                >
+                                    <Link
+                                        as="b"
+                                    >
+                                        tftstats.xyz - Data analysis + simple UI on the Riot Games TFT Api
+                                    </Link>
+                                </Flex>
+                            </Flex>)
+                            : terminalState === "contact" ?
+                                (<Flex
+                                    flexDirection="column"
+                                >
+                                    {/* PHONE */}
+                                    <Flex
+                                        alignItems="center"
+                                    >
+                                        <PhoneIcon marginRight="5px" />
+                                        <Text>925-997-0953</Text>
+                                    </Flex>
+                                    {/* EMAIL */}
+                                    <Flex
+                                        alignItems="center"
+                                    >
+                                        <EmailIcon marginRight="5px" />
+                                        <Text>aria.lopez.dev@gmail.com</Text>
+                                    </Flex>
+                                    {/* DISCORD */}
+                                    <Flex
+                                        alignItems="center"
+                                    >
+                                        <Icon as={FaDiscord} marginRight="5px" />
+                                        <Text>aria._._.</Text>
+                                    </Flex>
+                                </Flex>)
+                                : terminalState === "resume" ?
+                                    (<Flex
+                                        flexDirection="column"
+                                    >
+                                        {/* Download Link */}
+                                        <Flex
+                                            as="u"
+                                        >
+                                            <Link
+                                                color="orange"
+                                                as="b"
+                                                onClick={() => openLink("https://docs.google.com/document/d/1PnnBEnK2FfEIlpB4hfuFvJxvzzv6Qlz6tV6k5Dt_gsg/edit?usp=sharing")}
+                                            >
+                                                Full resume with details (click me)
+                                            </Link>
+                                        </Flex>
+                                        {/* TECH ICONS */}
+                                        <Flex
+                                            flexDirection="column"
+                                            marginTop="10px"
+                                        >
+                                            <Text
+                                                as="b"
+                                            >
+                                                Technologies:
+                                            </Text>
+                                            <Flex
+                                                flexDirection="row"
+                                                wrap="wrap"
+                                            >
+                                                <IconWithTip icon="vim" />
+                                                <IconWithTip icon="postgresql" />
+                                                <IconWithTip icon="javascript" />
+                                                <IconWithTip icon="typescript" />
+                                                <IconWithTip icon="node" />
+                                                <IconWithTip icon="react" />
+                                                <IconWithTip icon="vue" />
+                                                <IconWithTip icon="python" />
+                                                <IconWithTip icon="go" />
+                                                <IconWithTip icon="git" />
+                                                <IconWithTip icon="docker" />
+                                                <IconWithTip icon="aws" />
+                                                <IconWithTip icon="gitlab CI/CD" />
+                                            </Flex>
+                                        </Flex>
+                                        {/* Experience Overview */}
+                                        <Flex
+                                            flexDirection="column"
+                                            marginTop="10px"
+                                        >
+                                            <Text
+                                                as="b"
+                                                marginBottom="10px"
+                                            >
+                                                Positions:
+                                            </Text>
 
-                        <Text>
-                            Galvanize - Software Engineering Mentor
-                        </Text>
+                                            <Text>
+                                                Pando - FullStack Engineer (Backend)
+                                            </Text>
 
-                        <Text
-                            as="b"
-                            margin="10px 0px"
-                        >
-                            Education:
-                        </Text>
+                                            <Text>
+                                                Galvanize - Software Engineering Mentor
+                                            </Text>
 
-                        <Text>
-                            Hack Reactor (Bootcamp)
-                        </Text>
-                    </Flex>
-                </Flex>)
-                : terminalState === "fox" ?
-                (<Flex>
-                    <Image 
-                        src={foxImg} 
-                        width="500px"
-                    />
-                </Flex>)
-                : null
+                                            <Text
+                                                as="b"
+                                                margin="10px 0px"
+                                            >
+                                                Education:
+                                            </Text>
+
+                                            <Text>
+                                                Hack Reactor (Bootcamp)
+                                            </Text>
+                                        </Flex>
+                                    </Flex>)
+                                    : terminalState === "fox" ?
+                                        (<Flex>
+                                            <Image
+                                                src={foxImg}
+                                                width="500px"
+                                            />
+                                        </Flex>)
+                                        : null
             }
 
             {/* "Command Line" */}
@@ -310,8 +324,8 @@ export default function Terminal() {
                 >
                     {text?.length > 0 ? text : "Begin typing..."}
                 </Text>
-                <Flex 
-                    animation={cursorAnimation} 
+                <Flex
+                    animation={cursorAnimation}
                     w="5px"
                     h="20px"
                 />
